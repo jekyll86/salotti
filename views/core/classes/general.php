@@ -1,9 +1,19 @@
 <?php
 class General {
 
-	#Check if the user is logged in.
+	#Controlla se l'utente è loggato.
 	public function logged_in() {
 		return (isset($_SESSION['id'])) ? true : false;
+	}
+	
+	//controlla se l'utente ha ruolo amministratore
+	public function is_admin(){
+		$is_admin = false;
+		if ($_SESSION['role'] == 99) {
+			$is_admin = true;
+		}
+		
+		return $is_admin;
 	}
 
 	#if logged in then redirect to home.php
