@@ -143,7 +143,7 @@ class Users {
  
 	global $bcrypt;  // Again make the bcrypt variable global, which is defined in init.php, which is included in login.php where this function is called
  
-	$query = $this -> db -> prepare("SELECT `password`, `id` FROM `users` WHERE `email` = ?");
+	$query = $this -> db -> prepare("SELECT `password`, `ruolo`, `id` FROM `users` WHERE `email` = ?");
 	$query -> bindValue(1, $email);
 
  
@@ -153,9 +153,12 @@ class Users {
 		$data 				= $query->fetch();
 		$stored_password 	= $data['password']; // stored hashed password
 		$id   				= $data['id']; 
-		
+		$role 				= $data['ruolo'];
+
 		if($bcrypt->verify($password, $stored_password) === true){ // using the verify method to compare the password with the stored hashed password.
-			return $id;	
+			$login['id'] = $id;
+			$login['role'] = $role;
+			return $login;		
 		}else{
 			return false;	
 		}
