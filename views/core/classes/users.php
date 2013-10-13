@@ -155,7 +155,10 @@ class Users {
 		$id   				= $data['id']; 
 		
 		if($bcrypt->verify($password, $stored_password) === true){ // using the verify method to compare the password with the stored hashed password.
-			return $id;	
+			if($bcrypt->verify($password, $stored_password) === true){ // using the verify method to compare the password with the stored hashed password.
+			$login['id'] = $id;
+			$login['role'] = $role;
+			return $login;		
 		}else{
 			return false;	
 		}
