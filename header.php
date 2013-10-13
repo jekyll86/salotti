@@ -65,9 +65,17 @@ if (isset($title))
 						<ul class="dropdown-menu">
 
 
+							<?php
+							
+							if($general -> is_admin() === true) : ?>
+							
+							
 							<li><a href="<?=curUrl() ?>aggiungi/prodotto.html">Aggiungi
 									prodotto</a>
+									
+							
 							</li>
+							<?php endif; ?>
 
 
 							<li><a href="<?=curUrl() ?>listaprodotti.html">Lista Prodotti</a>
